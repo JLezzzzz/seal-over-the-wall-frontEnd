@@ -21,7 +21,7 @@ const ProductDetail = () => {
   const { productId } = useParams();
   const [selectedSize, setSelectedSize] = useState(null); // Initialize selectedSize to null
   const [selectedColor, setSelectedColor] = useState(null); // Add state for selected color
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -74,8 +74,8 @@ const ProductDetail = () => {
 
         <div className="flex justify-between py-8">
           <div>
-            <h5 className="text-[40px] font-semibold">T-Shirt Basic</h5>
-            <p className="text-2xl mt-4">599 THB</p>
+            <h5 className="text-[40px] font-semibold">{product.title}</h5>
+            <p className="text-2xl mt-4">{product.price} THB</p>
             <div className="flex gap-4 mt-6">
               <p className="text-2xl font-semibold">Sizes</p>
               <p className="underline">View size chart</p>
@@ -132,7 +132,8 @@ const ProductDetail = () => {
             </div>
             <div className="flex gap-4 justify-end mt-12">
               <button
-                className="bg-[#334DD8] px-12 py-2 rounded-full text-white"
+                // className="bg-[#334DD8] px-12 py-2 rounded-full text-white"
+                className="bg-primary-blue-500 hover:bg-primary-blue-700 px-12 py-2 rounded-full text-white cursor-pointer active:bg-primary-blue-500"
                 onClick={() => { // Add onClick handler
                   if (!selectedSize || !selectedColor) {
                     alert('Please select a size and color.'); // Alert if size or color is not selected

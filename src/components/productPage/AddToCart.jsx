@@ -33,7 +33,7 @@ const AddToCart = ({ item, addItemToCart, random }) => {
     <div>
       <AlertDialog >
         <AlertDialogTrigger asChild>
-          <Button className="px-5 py-2 rounded-full border-1 bg-white hover:bg-[#334DD8] hover:text-white cursor-pointer" onClick={handleAddToCart}>Add to cart</Button>
+          <Button className="px-5 py-2 rounded-full border-1 bg-white hover:bg-primary-blue-500 hover:text-white cursor-pointer" onClick={handleAddToCart}>Add to cart</Button>
         </AlertDialogTrigger>
         <AlertDialogContent className="bg-white">
           <AlertDialogHeader className="items-center">
@@ -48,9 +48,9 @@ const AddToCart = ({ item, addItemToCart, random }) => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="mt-2 sm:justify-center">
-            <AlertDialogCancel className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">Continue Shopping</AlertDialogCancel>
+            <AlertDialogCancel className="px-4 py-2 bg-primary-blue-500 text-white rounded-full hover:bg-primary-blue-700">Continue Shopping</AlertDialogCancel>
             <AlertDialogAction
-              className="px-4 py-2 bg-white text-black border-1 rounded-full hover:bg-blue-700  hover:text-white"
+              className="px-4 py-2 bg-white text-black border-1 rounded-full hover:bg-primary-blue-700  hover:text-white"
             >
               Go to Cart
             </AlertDialogAction>
