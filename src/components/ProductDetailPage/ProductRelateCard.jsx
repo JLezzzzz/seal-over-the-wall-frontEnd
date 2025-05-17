@@ -20,7 +20,7 @@ const ProductRelateCard = ({ item }) => {
       <div class="w-full h-auto bg-[#F4F4F5]">
         <div className="relative overflow-hidden ">
           <img
-            src={`/${item.images?.[randomIndex]}`}
+            src={`${item.images?.[randomIndex]}`}
             alt={item.name}
             className="w-full h-auto object-cover"
           />
