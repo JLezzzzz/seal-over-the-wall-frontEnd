@@ -6,7 +6,7 @@ import PriceAndStockTable from "../components/collectDetailsPage/PriceAndStockTa
 import TotalProfitTable from "../components/collectDetailsPage/TotalProfitTable";
 import PromotionCampaign from "../components/collectDetailsPage/PromotionCampaign";
 
-function CollectDetails({ createData, onNext, onBack, updateCreateData }) {
+function CollectDetails({ createData, onNext, onBack, updateCreateData, step }) {
   const previews = createData?.createdesign?.previewImages || [];
 
   const [productEntries, setProductEntries] = React.useState(
@@ -35,6 +35,13 @@ function CollectDetails({ createData, onNext, onBack, updateCreateData }) {
     }));
   };
 
+  const handleNext = (e) => {
+    e.preventDefault();
+    const allProducts = buildProductPayload();
+    updateCreateData({ collectdetails: { productList: allProducts } });
+    onNext();
+  };
+
   return (
     <form>
       <div className="flex flex-col items-center">
@@ -44,17 +51,8 @@ function CollectDetails({ createData, onNext, onBack, updateCreateData }) {
             Okay, let's get your product ready to shine! Tell us the price and how many you've got...
           </p>
           <div className="flex justify-end items-center gap-4 pr-[152px] mt-1.5 ">
-            <button><BackButton onBack={onBack} /></button>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                const allProducts = buildProductPayload();
-                updateCreateData({ collectdetails: { productList: allProducts } });
-                onNext();
-              }}
-            >
-              <NextStepButton />
-            </button>
+            <BackButton onBack={onBack} />
+            <NextStepButton onNext={handleNext} step={step} />
           </div>
         </div>
 

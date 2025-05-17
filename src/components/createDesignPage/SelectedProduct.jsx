@@ -33,22 +33,22 @@ const printAreas = {
 // Product mockup map
 const productMockups = {
   tshirt: [
-    { color: 'white', src: shirtwhite },
-    { color: 'gray', src: shirtgray },
     { color: 'black', src: shirtblack },
     { color: 'blue', src: shirtblue },
+    { color: 'gray', src: shirtgray },
+    { color: 'white', src: shirtwhite },
   ],
   bags: [
-    { color: 'white', src: bagwhite },
-    { color: 'gray', src: baggray },
     { color: 'black', src: bagblack },
     { color: 'blue', src: bagblue },
+    { color: 'gray', src: baggray },
+    { color: 'white', src: bagwhite },
   ],
   cups: [
-    { color: 'white', src: cupwhite },
-    { color: 'gray', src: cupgray },
     { color: 'black', src: cupblack },
     { color: 'blue', src: cupblue },
+    { color: 'gray', src: cupgray },
+    { color: 'white', src: cupwhite },
   ],
 };
 

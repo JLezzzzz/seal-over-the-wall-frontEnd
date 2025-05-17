@@ -68,10 +68,10 @@ const SignupForm = () => {
           <form className="mt-6" onSubmit={handleRegisterSubmit}>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <SignUpFormInput name="email" label="Email" onChange={handleOnchange} required />
+                <SignUpFormInput name="email" label="Email" type="email" onChange={handleOnchange} required />
               </div>
               <div>
-                <SignUpFormInput name="phoneNumber" label="Mobile phone number" type="tel" onChange={handleOnchange} required />
+                <SignUpFormInput name="phoneNumber" label="Mobile phone number" type="tel"  onChange={handleOnchange} maxLength="10" required />
               </div>
             </div>
             <div className="mt-4">
@@ -119,7 +119,7 @@ const SignupForm = () => {
             </div>
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
-                <SignUpFormInput name="postal" label="Postal code" onChange={handleOnchange} required />
+                <SignUpFormInput name="postal" label="Postal code" maxLength="5" onChange={handleOnchange} required />
               </div>
               <div>
                 <SignUpFormInput name="city" label="City" onChange={handleOnchange} required />

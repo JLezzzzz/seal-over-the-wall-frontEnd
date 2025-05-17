@@ -63,7 +63,7 @@ function TotalProfitTable({ entries }) {
   );
 }
 
-// ✅ Optional safety fallback
+
 TotalProfitTable.defaultProps = {
   entries: [],
 };

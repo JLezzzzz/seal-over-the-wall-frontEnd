@@ -47,7 +47,7 @@ export default function Carousel({
         </div>
       </div>
       <div className="absolute bottom-15 left-10 flex ">
-        <img src="..\src\assets\images\custommike-navbar-logo.svg"
+        <img src="/assets/images/custommike-navbar-logo.svg"
         className="w-[139px] h-[18px]"/>
       </div>
     </div>

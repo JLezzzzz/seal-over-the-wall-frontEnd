@@ -1,3 +1,4 @@
+// CreateDesign.jsx
 import React, { useState } from 'react';
 import ProductSelection from '../components/createDesignPage/ProductSelection';
 import ColorSelection from '../components/createDesignPage/ColorSelection';
@@ -15,20 +16,18 @@ import html2canvas from 'html2canvas';
 import ModalAlert from '../components/createDesignPage/ModalAlert';
 import LoadingModal from '../components/createDesignPage/LoadingModal';
 
-function CreateDesign({ onNext, updateCreateData }) {
+function CreateDesign({ onNext, updateCreateData, step }) {
   const [selectedProduct, setSelectedProduct] = useState('tshirt');
   const [designURL, setDesignURL] = useState('');
   const [uploadedPreviews, setUploadedPreviews] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
-  const [selectedColors, setSelectedColors] = useState(['white']);
+  const [selectedColors, setSelectedColors] = useState(['black']);
   const [isSaved, setIsSaved] = useState(false);
   const [modal, setModal] = useState({ open: false, title: '', message: '' });
   const [loading, setLoading] = useState(false);
 
   const CLOUD_NAME = 'dvpnipb6g';
   const UPLOAD_PRESET = 'upload_designs';
-
-  
 
   const showModal = (message) => {
     setModal({ open: true, title: "Alert", message });
@@ -159,26 +158,11 @@ function CreateDesign({ onNext, updateCreateData }) {
   const handleSubmit = (e) => e.preventDefault();
 
   const renderProductTemplate = () => {
-    let TemplateComponent;
     switch (selectedProduct) {
-      case 'bags': TemplateComponent = <BagTemplate />; break;
-      case 'cups': TemplateComponent = <CupTemplate />; break;
-      default: TemplateComponent = <TShirtTemplate />;
+      case 'bags': return <BagTemplate />;
+      case 'cups': return <CupTemplate />;
+      default: return <TShirtTemplate />;
     }
-
-    return (
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={selectedProduct}
-          initial={{ opacity: 0, x: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, x: -10 }}
-          transition={{ duration: 0.2 }}
-        >
-          {TemplateComponent}
-        </motion.div>
-      </AnimatePresence>
-    );
   };
 
   return (
@@ -219,34 +203,26 @@ function CreateDesign({ onNext, updateCreateData }) {
 
                 onNext();
               }}
+              step={step}
             />
           </div>
         </div>
       </div>
 
-      <motion.div
-        className="w-full flex flex-col items-center gap-8 px-4 my-10"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-        <motion.div
-          className="absolute z-10 mt-25"
+      <motion.div className="w-full flex flex-col items-center gap-8 px-4 my-10"
+        initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: 'easeOut' }}>
+        <motion.div className="absolute z-10 mt-25"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
+          transition={{ delay: 0.2, duration: 0.5 }}>
           <UploadDesignBox onUpload={setDesignURL} />
         </motion.div>
         <div className="relative">{renderProductTemplate()}</div>
       </motion.div>
 
-      <motion.div
-        className="flex justify-center mt-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-      >
+      <motion.div className="flex justify-center mt-10"
+        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}>
         <SelectedProduct
           selectedProduct={selectedProduct}
           selectedColors={selectedColors}
@@ -254,16 +230,8 @@ function CreateDesign({ onNext, updateCreateData }) {
         />
       </motion.div>
 
-      <ModalAlert
-        isOpen={modal.open}
-        onClose={closeModal}
-        title={modal.title}
-        message={modal.message}
-      />
-
+      <ModalAlert isOpen={modal.open} onClose={closeModal} title={modal.title} message={modal.message} />
       <LoadingModal isOpen={loading} />
-
-
       <Walkthrough />
     </form>
   );

@@ -1,15 +1,19 @@
+// Create.jsx
 import React from 'react';
 import CreateStepper from "../components/createDesignPage/CreateStepper";
 import CreateDesign from "./CreateDesign";
 import CollectDetails from "./CollectDetails";
 import ExpressAndPublish from "./ExpressAndPublish";
 import Preview from "./Preview";
+import { useNavigate } from 'react-router-dom';
 
 function Create() {
   const [step, setStep] = React.useState(() => {
     const saved = localStorage.getItem('create-step');
     return saved ? parseInt(saved, 10) : 0;
   });
+
+  const navigate = useNavigate();
 
   const [createData, setCreateData] = React.useState({
     createdesign: {},
@@ -31,14 +35,15 @@ function Create() {
       const nextStep = prev + 1;
 
       if (nextStep > 3) {
-        // ✅ Reset when preview is done
+        // Finish and redirect to shop
         localStorage.removeItem('create-step');
         setCreateData({
           createdesign: {},
           collectdetails: {},
           expressandpublish: {}
         });
-        return 0; // back to first step
+        navigate('/shop');
+        return prev; // don't update step anymore
       }
 
       return nextStep;
@@ -46,12 +51,10 @@ function Create() {
   };
 
   const handleBack = () => setStep((prev) => prev - 1);
-  
   const handleReset = () => {
     localStorage.removeItem('create-step');
     setStep(0);
   };
-
   const handleEdit = () => setStep(0);
 
   const renderStepContent = () => {
@@ -61,6 +64,7 @@ function Create() {
           <CreateDesign
             onNext={handleNext}
             updateCreateData={updateCreateData}
+            step={step}
           />
         );
       case 1:
@@ -70,6 +74,7 @@ function Create() {
             onNext={handleNext}
             onBack={handleBack}
             updateCreateData={updateCreateData}
+            step={step}
           />
         );
       case 2:
@@ -79,6 +84,7 @@ function Create() {
             onBack={handleBack}
             onEdit={handleEdit}
             createData={createData}
+            step={step}
           />
         );
       case 3:
@@ -89,6 +95,7 @@ function Create() {
             onReset={handleReset}
             onBack={handleBack}
             onEdit={handleEdit}
+            step={step}
           />
         );
       default:

@@ -5,10 +5,10 @@ function ColorSelection({ productType = 'tshirt', selectedColors, setSelectedCol
   const [selectedAreas, setSelectedAreas] = useState(['frontprint']);
 
   const colors = [
-    { name: 'white', className: 'bg-primary-white transition-all duration-300 ease-in-out hover:scale-110' },
-    { name: 'gray', className: 'bg-secondary-light-gray-500 transition-all duration-300 ease-in-out hover:scale-110' },
     { name: 'black', className: 'bg-primary-black transition-all duration-300 ease-in-out hover:scale-110' },
     { name: 'blue', className: 'bg-primary-blue-500 transition-all duration-300 ease-in-out hover:scale-110' },
+    { name: 'gray', className: 'bg-secondary-light-gray-500 transition-all duration-300 ease-in-out hover:scale-110' },
+    { name: 'white', className: 'bg-primary-white transition-all duration-300 ease-in-out hover:scale-110' },
   ];
 
   const toggleColor = (colorName) => {

@@ -11,9 +11,10 @@ import logoOrganic from "/assets/images/preview/Organic.svg";
 import iconIg from "/assets/images/preview/icon-ig.svg";
 import iconX from "/assets/images/preview/icon-x.svg";
 import iconFb from "/assets/images/preview/icon-fb.svg";
-import  uploadProduct  from "../services/product";
+import uploadProduct from "../services/product";
 
-const Preview = ({ onNext, onBack, createData }) => {
+
+const Preview = ({ onNext, onBack, createData, step }) => {
   const products = Array.isArray(createData?.expressandpublish) ? createData.expressandpublish : [];
   const productList = Array.isArray(createData?.collectdetails?.productList) ? createData.collectdetails.productList : [];
   const artistName = createData?.collectdetails?.artistName || "Unknown Artist";
@@ -39,11 +40,9 @@ const Preview = ({ onNext, onBack, createData }) => {
       images: firstProduct.images?.map(img => img.url) || []
     };
 
-  
-
     try {
       const response = await uploadProduct(payload);
-      console.log("✅ Product created:", response.product);
+
       onNext();
     } catch (err) {
       console.error("❌ Error submitting product:", err.response?.data || err.message);
@@ -61,15 +60,12 @@ const Preview = ({ onNext, onBack, createData }) => {
           This page will display the image, color, size, product type, and description you provided earlier.
         </p>
         <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5 ">
-          <button>
-            <BackButton onBack={onBack} />
-          </button>
-          <button>
-            <NextStepButton onNext={handleNext} />
-          </button>
+          <BackButton onBack={onBack} />
+          <NextStepButton onNext={handleNext} step={step} />
         </div>
       </div>
 
+      {/* Display preview and metadata */}
       <div className="w-full px-[152px]">
         <div className="mb-33">
           <div className="mt-2 flex items-center">
